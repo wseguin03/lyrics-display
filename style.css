@@ -50,6 +50,12 @@ h1 {
     transition: opacity 0.3s ease;
 }
 
+#progress {
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
 .controls {
     display: flex;
     justify-content: center;

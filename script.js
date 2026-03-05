@@ -37,6 +37,7 @@ let isPlaying = false;
 let playInterval = null;
 
 const lyricLine = document.getElementById('lyric-line');
+const progressEl = document.getElementById('progress');
 const prevBtn = document.getElementById('prev-btn');
 const playBtn = document.getElementById('play-btn');
 const nextBtn = document.getElementById('next-btn');
@@ -45,6 +46,7 @@ function updateDisplay() {
     lyricLine.style.opacity = '0';
     setTimeout(() => {
         lyricLine.textContent = lyrics[currentIndex];
+        progressEl.textContent = `Line ${currentIndex + 1} of ${lyrics.length}`;
         lyricLine.style.opacity = '1';
     }, 150);
 }
@@ -73,7 +75,8 @@ function togglePlay() {
 
 function startPlayback() {
     isPlaying = true;
-    playBtn.textContent = 'Stop';
+    playBtn.textContent = 'Pause';
+    playBtn.setAttribute('data-state', 'playing');
     playInterval = setInterval(() => {
         if (currentIndex < lyrics.length - 1) {
             currentIndex++;
@@ -87,19 +90,14 @@ function startPlayback() {
 function stopPlayback() {
     isPlaying = false;
     playBtn.textContent = 'Play';
+    playBtn.setAttribute('data-state', 'stopped');
     clearInterval(playInterval);
     playInterval = null;
 }
 
-prevBtn.addEventListener('click', () => {
-    stopPlayback();
-    prevLine();
-});
+prevBtn.addEventListener('click', prevLine);
 
-nextBtn.addEventListener('click', () => {
-    stopPlayback();
-    nextLine();
-});
+nextBtn.addEventListener('click', nextLine);
 
 playBtn.addEventListener('click', togglePlay);
 
