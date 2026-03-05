@@ -7,12 +7,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Decorative music notes -->
+    <div class="music-notes note-1">♪</div>
+    <div class="music-notes note-2">♫</div>
+    <div class="music-notes note-3">♩</div>
+    <div class="music-notes note-4">♪</div>
+
     <div class="container">
-        <h1>Lyrics Display</h1>
-        <div class="lyrics-box">
+        <header class="header">
+            <div class="music-icon">🎵</div>
+            <h1>Lyrics</h1>
+            <p class="subtitle">Iris — Goo Goo Dolls</p>
+        </header>
+
+        <div class="lyrics-card">
             <p id="lyric-line">And I'd give up forever to touch you</p>
         </div>
+
         <p id="progress">Line 1 of 31</p>
+
         <div class="controls">
             <button id="prev-btn">Previous</button>
             <button id="play-btn" data-state="stopped">Play</button>

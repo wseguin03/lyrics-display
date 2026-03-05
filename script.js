@@ -43,12 +43,15 @@ const playBtn = document.getElementById('play-btn');
 const nextBtn = document.getElementById('next-btn');
 
 function updateDisplay() {
-    lyricLine.style.opacity = '0';
+    lyricLine.classList.remove('fade-in');
+    lyricLine.classList.add('fade-out');
+
     setTimeout(() => {
         lyricLine.textContent = lyrics[currentIndex];
         progressEl.textContent = `Line ${currentIndex + 1} of ${lyrics.length}`;
-        lyricLine.style.opacity = '1';
-    }, 150);
+        lyricLine.classList.remove('fade-out');
+        lyricLine.classList.add('fade-in');
+    }, 200);
 }
 
 function nextLine() {
@@ -96,9 +99,7 @@ function stopPlayback() {
 }
 
 prevBtn.addEventListener('click', prevLine);
-
 nextBtn.addEventListener('click', nextLine);
-
 playBtn.addEventListener('click', togglePlay);
 
 updateDisplay();
