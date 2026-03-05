@@ -139,6 +139,24 @@ h1 {
     }
 }
 
+/* Progress Bar */
+.progress-container {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 3.23%;
+    background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
 #progress {
     font-size: 0.8rem;
     color: var(--accent-primary);
@@ -173,11 +191,13 @@ h1 {
     border: 1px solid var(--border-subtle);
 }
 
-#prev-btn:hover, #next-btn:hover {
+#prev-btn:hover, #next-btn:hover,
+#prev-btn:focus, #next-btn:focus {
     color: var(--accent-secondary);
     border-color: var(--accent-primary);
     box-shadow: 0 0 20px var(--accent-glow);
     transform: translateY(-2px);
+    outline: none;
 }
 
 #play-btn {
@@ -187,13 +207,20 @@ h1 {
     box-shadow: 0 4px 20px var(--accent-glow);
 }
 
-#play-btn:hover {
+#play-btn:hover, #play-btn:focus {
     transform: translateY(-2px);
     box-shadow: 0 8px 30px var(--accent-glow);
+    outline: none;
 }
 
 #play-btn:active {
     transform: translateY(0);
+}
+
+/* Focus styles for keyboard navigation */
+button:focus-visible {
+    outline: 2px solid var(--accent-secondary);
+    outline-offset: 3px;
 }
 
 button:disabled {
@@ -201,6 +228,15 @@ button:disabled {
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
+}
+
+/* Keyboard hint */
+.keyboard-hint {
+    margin-top: 1.5rem;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    opacity: 0.6;
 }
 
 /* Decorative music notes */
@@ -254,6 +290,10 @@ button:disabled {
         left: 1rem;
     }
 
+    .progress-container {
+        margin-bottom: 0.8rem;
+    }
+
     #progress {
         font-size: 0.7rem;
         margin-bottom: 1.5rem;
@@ -270,6 +310,10 @@ button:disabled {
 
     #play-btn {
         min-width: 90px;
+    }
+
+    .keyboard-hint {
+        font-size: 0.6rem;
     }
 }
 

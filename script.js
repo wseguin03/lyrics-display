@@ -38,6 +38,7 @@ let playInterval = null;
 
 const lyricLine = document.getElementById('lyric-line');
 const progressEl = document.getElementById('progress');
+const progressBar = document.getElementById('progress-bar');
 const prevBtn = document.getElementById('prev-btn');
 const playBtn = document.getElementById('play-btn');
 const nextBtn = document.getElementById('next-btn');
@@ -49,6 +50,11 @@ function updateDisplay() {
     setTimeout(() => {
         lyricLine.textContent = lyrics[currentIndex];
         progressEl.textContent = `Line ${currentIndex + 1} of ${lyrics.length}`;
+
+        // Update progress bar
+        const progress = ((currentIndex + 1) / lyrics.length) * 100;
+        progressBar.style.width = `${progress}%`;
+
         lyricLine.classList.remove('fade-out');
         lyricLine.classList.add('fade-in');
     }, 200);
@@ -98,8 +104,33 @@ function stopPlayback() {
     playInterval = null;
 }
 
+// Event listeners
 prevBtn.addEventListener('click', prevLine);
 nextBtn.addEventListener('click', nextLine);
 playBtn.addEventListener('click', togglePlay);
 
+// Keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+    // Ignore if user is typing in an input
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+        return;
+    }
+
+    switch (e.code) {
+        case 'Space':
+            e.preventDefault();
+            togglePlay();
+            break;
+        case 'ArrowLeft':
+            e.preventDefault();
+            prevLine();
+            break;
+        case 'ArrowRight':
+            e.preventDefault();
+            nextLine();
+            break;
+    }
+});
+
+// Initialize
 updateDisplay();

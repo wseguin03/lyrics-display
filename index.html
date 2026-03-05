@@ -24,13 +24,18 @@
             <p id="lyric-line">And I'd give up forever to touch you</p>
         </div>
 
+        <div class="progress-container">
+            <div id="progress-bar"></div>
+        </div>
         <p id="progress">Line 1 of 31</p>
 
         <div class="controls">
-            <button id="prev-btn">Previous</button>
-            <button id="play-btn" data-state="stopped">Play</button>
-            <button id="next-btn">Next</button>
+            <button id="prev-btn" aria-label="Previous line (Left Arrow)">Previous</button>
+            <button id="play-btn" data-state="stopped" aria-label="Play/Pause (Space)">Play</button>
+            <button id="next-btn" aria-label="Next line (Right Arrow)">Next</button>
         </div>
+
+        <p class="keyboard-hint">Space: Play/Pause · ← →: Navigate</p>
     </div>
     <script src="script.js"></script>
 </body>
