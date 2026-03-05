@@ -35,10 +35,13 @@ const lyrics = [
 let currentIndex = 0;
 let isPlaying = false;
 let playInterval = null;
+let speed = 2000; // milliseconds
 
 const lyricLine = document.getElementById('lyric-line');
 const progressEl = document.getElementById('progress');
 const progressBar = document.getElementById('progress-bar');
+const speedSlider = document.getElementById('speed-slider');
+const speedValue = document.getElementById('speed-value');
 const prevBtn = document.getElementById('prev-btn');
 const playBtn = document.getElementById('play-btn');
 const nextBtn = document.getElementById('next-btn');
@@ -93,7 +96,7 @@ function startPlayback() {
         } else {
             stopPlayback();
         }
-    }, 2000);
+    }, speed);
 }
 
 function stopPlayback() {
@@ -104,10 +107,29 @@ function stopPlayback() {
     playInterval = null;
 }
 
+function updateSpeed() {
+    speed = parseFloat(speedSlider.value) * 1000;
+    speedValue.textContent = `${speedSlider.value}s`;
+
+    // If playing, restart with new speed
+    if (isPlaying) {
+        clearInterval(playInterval);
+        playInterval = setInterval(() => {
+            if (currentIndex < lyrics.length - 1) {
+                currentIndex++;
+                updateDisplay();
+            } else {
+                stopPlayback();
+            }
+        }, speed);
+    }
+}
+
 // Event listeners
 prevBtn.addEventListener('click', prevLine);
 nextBtn.addEventListener('click', nextLine);
 playBtn.addEventListener('click', togglePlay);
+speedSlider.addEventListener('input', updateSpeed);
 
 // Keyboard shortcuts
 document.addEventListener('keydown', (e) => {
